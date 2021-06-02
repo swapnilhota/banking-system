@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
     friend ifstream &operator>>(ifstream &ifs, Account &acc);
     friend ostream &operator<<(ostream &os, Account &acc);
 };
+long Account::NextAccountNumber = 0;
 
 class Bank
 {
@@ -114,8 +116,24 @@ int main()
             cout << "\nAccount is Closed" << endl;
             break;
         case 6:
+            b.ShowAllAccounts();
+            break;
+        case 7:
+            break;
+        default:
+            cout << "\nEnter correct Choice";
+            exit(0);
         }
-    } while ();
+    } while (choice != 7);
 
     return 0;
+}
+
+Account::Account(string fname, string lname, float balance)
+{
+    NextAccountNumber++;
+    accountNumber = NextAccountNumber;
+    firstName = fname;
+    lastName = lname;
+    this->balance = balance;
 }
