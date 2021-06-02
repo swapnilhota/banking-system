@@ -187,3 +187,23 @@ ostream &operator<<(ostream &os, Account &acc)
     os << "Balance: " << acc.getBalance() << endl;
     return os;
 }
+
+Bank::Bank()
+{
+    Account account;
+    ifstream infile;
+
+    infile.open("Bank.data");
+    if (!infile)
+    {
+        cout << "Error-File Not Found" << endl;
+        return;
+    }
+    while (!infile.eof())
+    {
+        infile >> account;
+        accounts.insert(pair<long, Account>(account.getAccNo(), account));
+    }
+    Account::setLastAccountNumber(account.getAccNo());
+    infile.close();
+}
