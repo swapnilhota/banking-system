@@ -82,6 +82,14 @@ int main()
             cout << "\nCongratulations Account has been created\n";
             cout << acc;
             break;
+        case 2:
+            cout << "Enter Account Number: ";
+            cin >> accountNumber;
+            acc = b.BalanceEnquiry(accountNumber);
+            cout << "\nYour Account Details\n";
+            cout << acc;
+            break;
+        case 3:
         }
     } while ();
 
