@@ -71,6 +71,17 @@ int main()
 
         switch (choice)
         {
+        case 1:
+            cout << "Enter First Name: ";
+            cin >> fname;
+            cout << "Enter Last Name: ";
+            cin >> lname;
+            cout << "Enter Initial Balance: ";
+            cin >> balance;
+            acc = b.OpenAccount(fname, lname, balance);
+            cout << "\nCongratulations Account has been created\n";
+            cout << acc;
+            break;
         }
     } while ();
 
