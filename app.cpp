@@ -97,6 +97,17 @@ int main()
             acc = b.Deposit(accountNumber, amount);
             cout << "\nAmount is Deposited\n";
             cout << acc;
+            break;
+        case 4:
+            cout << "Enter Account Number: ";
+            cin >> accountNumber;
+            cout << "Enter Balance: ";
+            cin >> amount;
+            acc = b.Withdraw(accountNumber, amount);
+            cout << "\nAmount Withdrawn\n";
+            cout << acc;
+            break;
+        case 5:
         }
     } while ();
 
