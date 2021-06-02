@@ -80,7 +80,7 @@ int main()
         switch (choice)
         {
         case 1:
-            cout << "Enter First Name: ";
+            cout << "\nEnter First Name: ";
             cin >> fname;
             cout << "Enter Last Name: ";
             cin >> lname;
@@ -151,7 +151,8 @@ void Account::WithDraw(float amount)
 {
     if (balance - amount < MIN_BALANCE)
     {
-        throw InsufficientFund();
+        cout << "Insufficient Balance" << endl;
+        return;
     }
     balance -= amount;
 }
@@ -206,4 +207,63 @@ Bank::Bank()
     }
     Account::setLastAccountNumber(account.getAccNo());
     infile.close();
+}
+Account Bank::OpenAccount(string fname, string lname, float balance)
+{
+    ofstream outfile;
+    Account account(fname, lname, balance);
+    accounts.insert(pair<long, Account>(account.getAccNo(), account));
+
+    outfile.open("Bank.data", ios::trunc);
+
+    map<long, Account>::iterator itr;
+    for (itr = accounts.begin(); itr != accounts.end(); itr++)
+    {
+        outfile << itr->second;
+    }
+    outfile.close();
+    return account;
+}
+Account Bank::BalanceEnquiry(long accountNumber)
+{
+    map<long, Account>::iterator itr = accounts.find(accountNumber);
+    return itr->second;
+}
+Account Bank::Deposit(long accountNumber, float amount)
+{
+    map<long, Account>::iterator itr = accounts.find(accountNumber);
+    itr->second.Deposit(amount);
+    return itr->second;
+}
+Account Bank::Withdraw(long accountNumber, float amount)
+{
+    map<long, Account>::iterator itr = accounts.find(accountNumber);
+    itr->second.WithDraw(amount);
+    return itr->second;
+}
+void Bank::CloseAccount(long accountNumber)
+{
+    map<long, Account>::iterator itr = accounts.find(accountNumber);
+    cout << "Account Deleted" << itr->second;
+    accounts.erase(accountNumber);
+}
+void Bank::ShowAllAccounts()
+{
+    for (auto itr = accounts.begin(); itr != accounts.end(); itr++)
+    {
+        cout << "Account " << itr->first << endl
+             << itr->second << endl;
+    }
+}
+Bank::~Bank()
+{
+    ofstream outfile;
+    outfile.open("Bank.data", ios::trunc);
+
+    for (auto itr = accounts.begin(); itr != accounts.end(); itr++)
+    {
+        outfile << itr->second;
+    }
+
+    outfile.close();
 }
