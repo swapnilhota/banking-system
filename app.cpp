@@ -90,6 +90,13 @@ int main()
             cout << acc;
             break;
         case 3:
+            cout << "Enter Account Number: ";
+            cin >> accountNumber;
+            cout << "Enter Balance: ";
+            cin >> amount;
+            acc = b.Deposit(accountNumber, amount);
+            cout << "\nAmount is Deposited\n";
+            cout << acc;
         }
     } while ();
 
