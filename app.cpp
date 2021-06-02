@@ -108,6 +108,12 @@ int main()
             cout << acc;
             break;
         case 5:
+            cout << "Enter Account Number: ";
+            cin >> accountNumber;
+            b.CloseAccount(accountNumber);
+            cout << "\nAccount is Closed" << endl;
+            break;
+        case 6:
         }
     } while ();
 
